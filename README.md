@@ -1,4 +1,4 @@
-# RickAndMortyApp-RX-Java
+# RickAndMortyApp-RX-Java ![Build status](https://github.com/wallabag/android-app/workflows/CI/badge.svg?branch=master)
 Aplicación que usa  [RyckAndMortyAPI](https://rickandmortyapi.com/documentation/) para mostrar información de los personajes de la serie e  implementa la librería RXJava3, base de datos Room, LiveData, inyección de dependencias con Dagger Hilt y el patrón CleanCode con MVVM para android
 
 
