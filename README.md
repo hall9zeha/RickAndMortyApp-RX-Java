@@ -16,6 +16,9 @@ Aplicación que usa  [RyckAndMortyAPI](https://rickandmortyapi.com/documentation
 * [Glide](https://developer.android.com/training/dependency-injection/hilt-android) 
 * [Retrofit](https://square.github.io/retrofit/)
 
+## Descarga la aplicación 
+* Descarga la apk [aquí](https://github.com/hall9zeha/RickAndMortyApp-RX-Java/raw/main/demo/app-debug.apk)
+
 # Screenshots :framed_picture:
 |  |  |
 |--|--|
