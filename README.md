@@ -1,10 +1,12 @@
 # RickAndMortyApp-RX-Java ![Build status](https://github.com/wallabag/android-app/workflows/CI/badge.svg?branch=master)
-Aplicación que usa  [RyckAndMortyAPI](https://rickandmortyapi.com/documentation/) para mostrar información de los personajes de la serie e  implementa la librería RXJava3, base de datos Room, LiveData, inyección de dependencias con Dagger Hilt y el patrón CleanCode con MVVM para android
+Aplicación que usa  [RickAndMortyAPI](https://rickandmortyapi.com/documentation/) para mostrar información de los personajes de la serie e  implementa la librería RXJava3, base de datos Room, LiveData, inyección de dependencias con Dagger Hilt y el patrón CleanCode con MVVM para android.
+
+La rama [graphql](https://github.com/hall9zeha/RickAndMortyApp-RX-Java/tree/graphql) implementa la version GraphQl de la API RickAndMorty
 
 
 # Se Utilizó :gear:
 
-* [Ryck&Morty API](https://rickandmortyapi.com/documentation/)
+* [Rick&Morty API](https://rickandmortyapi.com/documentation/)
 * [Room database](https://developer.android.com/jetpack/androidx/releases/room?gclid=EAIaIQobChMIh-Hoi7C_-gIVRxXUAR2kZAAsEAAYASAAEgJnivD_BwE&gclsrc=aw.ds)
 * [Arquitectura MVVM](https://developer.android.com/jetpack/guide)
 * [Lyfecycle view model](https://developer.android.com/jetpack/androidx/releases/lifecycle)
