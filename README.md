@@ -1,5 +1,5 @@
 # RickAndMortyApp-RX-Java
-Aplicación que usa  [RyckAndMortyAPI](https://rickandmortyapi.com/documentation/) para mostrar información de los personajes de la serie e  implementa la librería RXJava3, base de datos Room, LiveData, inyección de dependencias con Dagger Hilt y el patrón CleanCode con MVVM para android
+Aplicación que usa  [RyckAndMortyAPI](https://rickandmortyapi.com/documentation/) con [GraphQl](https://graphql.org/) para mostrar información de los personajes de la serie e  implementa la librería RXJava3, base de datos Room, LiveData, inyección de dependencias con Dagger Hilt y el patrón CleanCode con MVVM para android
 
 
 # Se Utilizó :gear:
