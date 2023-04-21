@@ -2,11 +2,11 @@ name: Android CI App
 
 on:
   push:
-    branches: [ "main" ]
-    branches: [ "graphql" ]
+    branches: [ "main" , "graphql"]
+
   pull_request:
-    branches: [ "main" ]
-    branches: [ "graphql" ]
+    branches: [ "main" ,"graphql"]
+
 
 defaults:
   run:
