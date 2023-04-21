@@ -8,8 +8,11 @@ package com.barrygithub.rickandmortyapp.common
  **/
 object Constants {
     const val BASE_URL = "https://rickandmortyapi.com/api/"
+    const val BASE_URL_GRAPHQL="https://rickandmortyapi.com/"
     const val CHARACTER = "character/"
     const val EPISODE = "episode/"
     const val DATABASE_NAME = "LocalEntity"
+
     const val EXTRA_BUNDLE = "extra"
+
 }

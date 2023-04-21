@@ -50,6 +50,11 @@ dependencies {
     implementation "com.squareup.retrofit2:retrofit:$retrofit_version"
     implementation "com.squareup.retrofit2:converter-gson:$retrofit_version"
     implementation "com.squareup.retrofit2:adapter-rxjava3:$rx_java_retrofit_version"
+    //Scalar convert for retrofit
+    implementation "com.squareup.retrofit2:converter-scalars:$retrofit_version"
+
+    //gson
+    implementation "com.google.code.gson:gson:$gson_version"
 
     //Dagger hilt
     implementation "com.google.dagger:hilt-android:$dagger_hilt_version"
@@ -71,4 +76,5 @@ dependencies {
     testImplementation "io.mockk:mockk:$mockk_version"
     testImplementation 'org.mockito:mockito-core:2.19.0'
     testImplementation "android.arch.core:core-testing:1.1.1"
+
 }

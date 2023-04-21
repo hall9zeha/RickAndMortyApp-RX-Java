@@ -1,10 +1,11 @@
 package com.barrygithub.rickandmortyapp.data.remoteDatasource
 
-import com.barrygithub.rickandmortyapp.data.localDatasource.*
-import com.barrygithub.rickandmortyapp.data.remoteDatasource.entities.Episode
-import com.barrygithub.rickandmortyapp.data.remoteDatasource.entities.toDatabase
+import com.barrygithub.rickandmortyapp.data.localDatasource.Character
+import com.barrygithub.rickandmortyapp.data.localDatasource.MetaData
+import com.barrygithub.rickandmortyapp.data.localDatasource.MyDAO
+import com.barrygithub.rickandmortyapp.graphql.getCharacterQuery
 import io.reactivex.rxjava3.core.Single
-import io.reactivex.rxjava3.schedulers.Schedulers
+import org.json.JSONObject
 
 /**
  * Project RickAndMortyApp
@@ -14,7 +15,18 @@ import io.reactivex.rxjava3.schedulers.Schedulers
  **/
 class RepositoryImpl(private val api:ApiClient, private val db:MyDAO) : Repository{
 
-    override fun getDataFromApi(page: Int): Single<EntityDb> = api.getDataFromApi(page).map { it.toDatabase()}
+    //gracias a la query de graphQl nos deveolverá una lista de capítulos de cada personaje
+    //y no una lista de enlaces como en la rest API, así que ya no necesitaremos llamar a cada enlace de episodio
+    //para obtener sus campos
+
+    override fun getDataFromGraphql(page: Int): Single<String> {
+        //Convertimos nuestra query en un objeto tipo json para la peticion a la api graphql
+        val paramObject = JSONObject()
+        paramObject.put("query", getCharacterQuery(page))
+        return api.getDataFromApiGraphQl(paramObject.toString())
+
+    }
+
     override fun saveMetadataInDb(metadata: MetaData) {
         //seteamos manualmente el id aunque esté como autogenrado en room
         //lo hacemos para que no vuelva a insertar un nuevo registro y reemplace el mismo que ya tenemos la primera vez
@@ -30,5 +42,5 @@ class RepositoryImpl(private val api:ApiClient, private val db:MyDAO) : Reposito
     }
 
     override fun getDataFromDb() = db.getDataFromDatabase()
-    override fun getEpisode(idEpisode: Int) = api.getEpisodeFromApi(idEpisode)
+
 }

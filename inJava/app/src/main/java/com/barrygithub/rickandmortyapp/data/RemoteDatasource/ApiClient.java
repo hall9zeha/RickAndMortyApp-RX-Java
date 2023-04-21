@@ -1,13 +1,9 @@
 package com.barrygithub.rickandmortyapp.data.RemoteDatasource;
 
-import com.barrygithub.rickandmortyapp.common.Constants;
-import com.barrygithub.rickandmortyapp.data.RemoteDatasource.entities.EntityApi;
-import com.barrygithub.rickandmortyapp.data.RemoteDatasource.entities.Episode;
-
 import io.reactivex.rxjava3.core.Single;
-import retrofit2.http.GET;
-import retrofit2.http.Path;
-import retrofit2.http.Query;
+import retrofit2.http.Body;
+import retrofit2.http.Headers;
+import retrofit2.http.POST;
 
 /**
  * Project RickAndMortyApp
@@ -15,9 +11,7 @@ import retrofit2.http.Query;
  * Copyright (c) Barry Zea H. All rights reserved.
  **/
 public interface ApiClient {
-    @GET(Constants.CHARACTER)
-    Single<EntityApi> getDataFromApi(@Query("page") int page);
-
-    @GET(Constants.EPISODE + "{idEpisode}")
-    Single<Episode> getEpisodeFromApi(@Path("idEpisode") int idEpisode);
+     @Headers("Content-Type: application/json")
+    @POST("graphql")
+    Single<String> getDataFromApiGraphql(@Body String body);
 }

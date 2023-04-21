@@ -5,13 +5,13 @@ import com.barrygithub.rickandmortyapp.data.LocalDatasource.entities.Character;
 import com.barrygithub.rickandmortyapp.data.LocalDatasource.entities.EntityDb;
 import com.barrygithub.rickandmortyapp.data.LocalDatasource.entities.MetaData;
 import com.barrygithub.rickandmortyapp.data.RemoteDatasource.ApiClient;
-import com.barrygithub.rickandmortyapp.data.RemoteDatasource.entities.Episode;
+import com.barrygithub.rickandmortyapp.graphql.Queries;
+
+import org.json.JSONObject;
 
 import java.util.List;
 
 import io.reactivex.rxjava3.core.Single;
-import io.reactivex.rxjava3.schedulers.Schedulers;
-import io.reactivex.rxjava3.subjects.BehaviorSubject;
 
 /**
  * Project RickAndMortyApp
@@ -28,13 +28,15 @@ public class RepositoryImpl  implements Repository{
     }
 
     @Override
-    public Single<EntityDb> getDataFromApi(int page) {
-       return apiClient.getDataFromApi(page).map(EntityDb::copyFromResponse);
+    public Single<String> getDataFromApiGraphql(int page) {
+        JSONObject paramObject = new JSONObject();
+        try{
+        paramObject.put("query", Queries.getAllCharactersQuery(page));}
+        catch(Exception e){}
+        return apiClient.getDataFromApiGraphql(paramObject.toString());
+
    }
-    @Override
-    public Single<Episode> getEpisode(int idEpisode) {
-        return apiClient.getEpisodeFromApi(idEpisode);
-    }
+
     @Override
     public Single<EntityDb> getDataFromDb() {
         return  db.getDataFromDatabase();

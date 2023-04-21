@@ -1,8 +1,9 @@
 package com.barrygithub.rickandmortyapp.data.remoteDatasource
 
 
-import com.barrygithub.rickandmortyapp.data.localDatasource.*
-import com.barrygithub.rickandmortyapp.data.remoteDatasource.entities.Episode
+import com.barrygithub.rickandmortyapp.data.localDatasource.Character
+import com.barrygithub.rickandmortyapp.data.localDatasource.EntityDb
+import com.barrygithub.rickandmortyapp.data.localDatasource.MetaData
 import io.reactivex.rxjava3.core.Single
 
 /**
@@ -12,10 +13,8 @@ import io.reactivex.rxjava3.core.Single
  *
  **/
 interface Repository {
-
-    fun getDataFromApi(page: Int): Single<EntityDb>
+    fun getDataFromGraphql(page:Int):Single<String>
     fun saveMetadataInDb(metadata: MetaData)
     fun saveCharactersInDb(characters: List<Character>)
     fun getDataFromDb(): Single<EntityDb>
-    fun getEpisode(idEpisode: Int): Single<Episode>
 }

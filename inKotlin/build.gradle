@@ -13,6 +13,7 @@ buildscript {
         rx_java_retrofit_version = "2.9.0"
         mockk_version = "1.12.2"
         fragment_version = "1.5.5"
+        gson_version="2.9.0"
     }
     dependencies {
         classpath "com.google.dagger:hilt-android-gradle-plugin:$dagger_hilt_version"

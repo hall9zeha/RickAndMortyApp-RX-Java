@@ -2,7 +2,8 @@ package com.barrygithub.rickandmortyapp.data.localDatasource
 
 import android.os.Parcelable
 import androidx.room.*
-import com.barrygithub.rickandmortyapp.data.remoteDatasource.entities.EntityApi
+import com.google.gson.annotations.SerializedName
+import io.reactivex.rxjava3.core.SingleOnSubscribe
 import kotlinx.parcelize.Parcelize
 
 /**
@@ -46,7 +47,7 @@ data class Character(
     var type:String="",
     var image:String="",
     @Ignore
-    var episodes:List<String> = arrayListOf()
+    var episodes:List<Episode> = arrayListOf()
 
 
 ):Parcelable {
@@ -65,3 +66,10 @@ data class Character(
         return id
     }
 }
+@Parcelize
+data class Episode(
+    @SerializedName("id")var id:Int,
+    @SerializedName("name") var name:String,
+    @SerializedName("air_date")var airDate:String,
+    @SerializedName("episode") var episode:String
+):Parcelable

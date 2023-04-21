@@ -12,6 +12,7 @@ import okhttp3.OkHttpClient;
 import retrofit2.Retrofit;
 import retrofit2.adapter.rxjava3.RxJava3CallAdapterFactory;
 import retrofit2.converter.gson.GsonConverterFactory;
+import retrofit2.converter.scalars.ScalarsConverterFactory;
 
 /**
  * Project RickAndMortyApp
@@ -27,8 +28,8 @@ public class ApiServiceImpl implements ApiService {
     private Retrofit retrofitBuilder(){
 
         return new Retrofit.Builder()
-                .baseUrl(Constants.BASE_URL)
-                .addConverterFactory(GsonConverterFactory.create())
+                .baseUrl(Constants.BASE_GRAPHQL_URL)
+                .addConverterFactory(ScalarsConverterFactory.create())//ScalarConvert for graphql url
                 .addCallAdapterFactory(RxJava3CallAdapterFactory.create())
                 .build();
     }

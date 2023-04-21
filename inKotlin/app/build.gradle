@@ -60,6 +60,11 @@ dependencies {
     implementation "com.squareup.retrofit2:converter-gson:$retrofit_version"
     //Rxjava for retrofit
     implementation "com.squareup.retrofit2:adapter-rxjava3:$rx_java_retrofit_version"
+    //Scalar convert for retrofit
+    implementation "com.squareup.retrofit2:converter-scalars:$retrofit_version"
+
+    //gson
+    implementation "com.google.code.gson:gson:$gson_version"
 
     //Glide
     implementation "com.github.bumptech.glide:glide:$glide_version"

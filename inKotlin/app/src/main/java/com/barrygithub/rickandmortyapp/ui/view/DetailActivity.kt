@@ -6,8 +6,8 @@ import androidx.activity.viewModels
 import androidx.appcompat.app.AppCompatActivity
 import com.barrygithub.rickandmortyapp.common.Constants
 import com.barrygithub.rickandmortyapp.common.loadUrl
-import com.barrygithub.rickandmortyapp.data.localDatasource.Character
-import com.barrygithub.rickandmortyapp.data.remoteDatasource.entities.Episode
+import com.barrygithub.rickandmortyapp.data.localDatasource.*
+
 import com.barrygithub.rickandmortyapp.databinding.ActivityDetailBinding
 import com.barrygithub.rickandmortyapp.ui.viewModel.ViewModelMain
 import dagger.hilt.android.AndroidEntryPoint
@@ -23,7 +23,6 @@ class DetailActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         bind = ActivityDetailBinding.inflate(layoutInflater)
         setContentView(bind.root)
-        setUpObservers()
         getBundle()
     }
 
@@ -42,20 +41,12 @@ class DetailActivity : AppCompatActivity() {
         tvStatus.text = format("Status", c.status)
         tvType.text = format("Type", c.type)
         toolbarMain.title = c.name
+       c.episodes.forEach {e->
+            addViewForEpisode(e)
+        }
 
-        c.episodes?.let { episode->
-           episode.forEach {s->
-                val idEpisode = s.substring(s.lastIndexOf('/') + 1).toInt()
-                viewModel.callEpisode(idEpisode)
-            }
-        }
     }
-    private fun setUpObservers(){
-        viewModel.episode.observe(this,::addViewForEpisode)
-        viewModel.loadingEpisode.observe(this){
-            if(!it)bind.pbEpisodesLoading.visibility= View.GONE
-        }
-    }
+
     private fun format(title: String, value: String): String? {
         return String.format("%s: %s", title, value)
     }

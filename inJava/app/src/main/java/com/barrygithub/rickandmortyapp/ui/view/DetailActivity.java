@@ -1,17 +1,16 @@
 package com.barrygithub.rickandmortyapp.ui.view;
 
-import androidx.appcompat.app.AppCompatActivity;
-import androidx.lifecycle.ViewModelProvider;
-
 import android.os.Bundle;
-import android.util.Log;
 import android.view.View;
 import android.widget.TextView;
+
+import androidx.appcompat.app.AppCompatActivity;
+import androidx.lifecycle.ViewModelProvider;
 
 import com.barrygithub.rickandmortyapp.R;
 import com.barrygithub.rickandmortyapp.common.Constants;
 import com.barrygithub.rickandmortyapp.data.LocalDatasource.entities.Character;
-import com.barrygithub.rickandmortyapp.data.RemoteDatasource.entities.Episode;
+import com.barrygithub.rickandmortyapp.data.LocalDatasource.entities.Episode;
 import com.barrygithub.rickandmortyapp.databinding.ActivityDetailBinding;
 import com.barrygithub.rickandmortyapp.ui.viewModel.ViewModelMain;
 import com.bumptech.glide.Glide;
@@ -57,9 +56,8 @@ public class DetailActivity extends AppCompatActivity {
         bind.toolbarMain.setTitle(c.getName());
 
         if(c.getEpisodes() !=null){
-            for(String s:c.getEpisodes()){
-                int idEpisode=Integer.parseInt(s.substring(s.lastIndexOf('/') + 1));
-                viewModel.callEpisode(idEpisode);
+            for(Episode e:c.getEpisodes()){
+                addViewForEpisode(e);
             }
         }
     }
@@ -68,7 +66,7 @@ public class DetailActivity extends AppCompatActivity {
     }
     private void setUpViewModel(){
         viewModel= new ViewModelProvider(this).get(ViewModelMain.class);
-        viewModel.getEpisode().observe(this, this::addViewForEpisode);
+
         viewModel.isLoadingEpisode().observe(this,(isLoading)->{
             if(!isLoading) bind.pbEpisodesLoading.setVisibility(View.GONE);
         });

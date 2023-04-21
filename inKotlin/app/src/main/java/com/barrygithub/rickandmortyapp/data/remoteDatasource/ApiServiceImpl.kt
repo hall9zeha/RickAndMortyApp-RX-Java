@@ -8,6 +8,7 @@ import dagger.hilt.components.SingletonComponent
 import retrofit2.Retrofit
 import retrofit2.adapter.rxjava3.RxJava3CallAdapterFactory
 import retrofit2.converter.gson.GsonConverterFactory
+import retrofit2.converter.scalars.ScalarsConverterFactory
 
 /**
  * Project RickAndMortyApp
@@ -21,8 +22,8 @@ class ApiServiceImpl {
 
     private fun retrofitBuilder(): Retrofit {
         return Retrofit.Builder()
-            .baseUrl(Constants.BASE_URL)
-            .addConverterFactory(GsonConverterFactory.create())
+            .baseUrl(Constants.BASE_URL_GRAPHQL)
+            .addConverterFactory(ScalarsConverterFactory.create())
             .addCallAdapterFactory(RxJava3CallAdapterFactory.create())
             .build()
     }

@@ -13,6 +13,7 @@ buildscript {
         rx_java_version = "3.1.5"
         rx_java_retrofit_version = "2.9.0"
         mockk_version = "1.12.2"
+        gson_version="2.9.0"
 
     }
     dependencies {

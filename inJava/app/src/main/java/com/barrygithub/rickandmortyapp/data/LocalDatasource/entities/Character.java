@@ -34,7 +34,7 @@ import java.util.Objects;
                 )
         }
 )
-public class Character implements Parcelable {
+public class Character  implements Parcelable{
 
     @ColumnInfo(index = true)
     private  long idMetadata;
@@ -46,12 +46,6 @@ public class Character implements Parcelable {
     private String gender;
     private String type;
     private String image;
-    @Ignore
-    private List<String> episodes;
-
-    public Character() {
-    }
-
 
     protected Character(Parcel in) {
         idMetadata = in.readLong();
@@ -62,7 +56,25 @@ public class Character implements Parcelable {
         gender = in.readString();
         type = in.readString();
         image = in.readString();
-        episodes = in.createStringArrayList();
+        episodes = in.createTypedArrayList(Episode.CREATOR);
+    }
+
+    @Override
+    public void writeToParcel(Parcel dest, int flags) {
+        dest.writeLong(idMetadata);
+        dest.writeInt(id);
+        dest.writeString(name);
+        dest.writeString(status);
+        dest.writeString(species);
+        dest.writeString(gender);
+        dest.writeString(type);
+        dest.writeString(image);
+        dest.writeTypedList(episodes);
+    }
+
+    @Override
+    public int describeContents() {
+        return 0;
     }
 
     public static final Creator<Character> CREATOR = new Creator<Character>() {
@@ -76,6 +88,27 @@ public class Character implements Parcelable {
             return new Character[size];
         }
     };
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        Character character = (Character) o;
+        return id == character.id;
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(id);
+    }
+
+    @Ignore
+    private List<Episode> episodes;
+
+    public Character() {
+    }
+
+
 
     public long getIdMetadata() {
         return idMetadata;
@@ -141,42 +174,11 @@ public class Character implements Parcelable {
         this.image = image;
     }
 
-    public List<String> getEpisodes() {
+    public List<Episode> getEpisodes() {
         return episodes;
     }
 
-    public void setEpisodes(List<String> episodes) {
+    public void setEpisodes(List<Episode> episodes) {
         this.episodes = episodes;
-    }
-
-    @Override
-    public boolean equals(Object o) {
-        if (this == o) return true;
-        if (o == null || getClass() != o.getClass()) return false;
-        Character character = (Character) o;
-        return id == character.id;
-    }
-
-    @Override
-    public int hashCode() {
-        return Objects.hash(id);
-    }
-
-    @Override
-    public int describeContents() {
-        return 0;
-    }
-
-    @Override
-    public void writeToParcel(@NonNull Parcel parcel, int i) {
-        parcel.writeLong(idMetadata);
-        parcel.writeInt(id);
-        parcel.writeString(name);
-        parcel.writeString(status);
-        parcel.writeString(species);
-        parcel.writeString(gender);
-        parcel.writeString(type);
-        parcel.writeString(image);
-        parcel.writeStringList(episodes);
     }
 }

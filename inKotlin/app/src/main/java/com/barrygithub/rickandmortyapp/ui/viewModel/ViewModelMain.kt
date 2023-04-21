@@ -1,17 +1,16 @@
 package com.barrygithub.rickandmortyapp.ui.viewModel
 
-import android.util.Log
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
+import androidx.lifecycle.viewModelScope
 import com.barrygithub.rickandmortyapp.data.localDatasource.EntityDb
-import com.barrygithub.rickandmortyapp.data.remoteDatasource.entities.Episode
 import com.barrygithub.rickandmortyapp.domain.UseCaseInteractor
 import dagger.hilt.android.lifecycle.HiltViewModel
 import io.reactivex.rxjava3.android.schedulers.AndroidSchedulers
 import io.reactivex.rxjava3.core.Observer
-import io.reactivex.rxjava3.core.SingleObserver
 import io.reactivex.rxjava3.disposables.Disposable
+import kotlinx.coroutines.launch
 import javax.inject.Inject
 
 /**
@@ -33,14 +32,16 @@ class ViewModelMain @Inject constructor(private val interactor: UseCaseInteracto
     private var _loadingEpisode:MutableLiveData<Boolean> = MutableLiveData(true)
     val loadingEpisode:LiveData<Boolean> get() = _loadingEpisode
 
-    private var _episode:MutableLiveData<Episode> = MutableLiveData()
-    val episode:LiveData<Episode> get() = _episode
+
 
     private var _error:MutableLiveData<String> = MutableLiveData()
     val error:LiveData<String> get() = _error
 
-    fun getData(page:Int) = interactor.getData(page)
-
+    fun getData(page: Int){
+        viewModelScope.launch {
+            interactor.getDataGraphql(page)
+        }
+    }
     init {
         setUpObserverData()
     }
@@ -57,6 +58,7 @@ class ViewModelMain @Inject constructor(private val interactor: UseCaseInteracto
             override fun onNext(response: EntityDb) {
                 _responseApi.postValue(response)
                 _isLoading.postValue(false)
+
             }
 
             override fun onError(e: Throwable) {
@@ -70,22 +72,5 @@ class ViewModelMain @Inject constructor(private val interactor: UseCaseInteracto
             }
         }
     }
-    fun callEpisode(idEpisode:Int){
-        interactor.getEpisodeFromApi(idEpisode)
-            .observeOn(AndroidSchedulers.mainThread())
-            .subscribe(object: SingleObserver<Episode>{
-                override fun onSubscribe(d: Disposable) {
-                    disposable=d
-                }
 
-                override fun onSuccess(episode: Episode) {
-                    _episode.postValue(episode)
-                    _loadingEpisode.postValue(false)
-                }
-
-                override fun onError(e: Throwable) {
-                    Log.e("TAG", e.message!!)
-                }
-            })
-    }
 }

@@ -1,8 +1,6 @@
 package com.barrygithub.rickandmortyapp.domain
 
 import com.barrygithub.rickandmortyapp.data.localDatasource.EntityDb
-import com.barrygithub.rickandmortyapp.data.remoteDatasource.entities.Episode
-import io.reactivex.rxjava3.core.Single
 import io.reactivex.rxjava3.subjects.BehaviorSubject
 
 /**
@@ -12,7 +10,6 @@ import io.reactivex.rxjava3.subjects.BehaviorSubject
  *
  **/
 interface UseCaseInteractor {
-    fun getData(page:Int)
     fun getObservableData():BehaviorSubject<EntityDb>
-    fun getEpisodeFromApi(idEpisode:Int): Single<Episode>
+    fun getDataGraphql(page:Int)
 }

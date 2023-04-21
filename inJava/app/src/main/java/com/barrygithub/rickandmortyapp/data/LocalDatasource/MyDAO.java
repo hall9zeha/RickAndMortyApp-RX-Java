@@ -25,18 +25,11 @@ public interface MyDAO {
     @Insert(onConflict = OnConflictStrategy.REPLACE)
     Void saveMetadata(MetaData metadata);
 
-    @Update
-    Single<Integer> updateMetaData(MetaData metaData);
-
     @Insert
     Void saveCharacters(List<Character> characters);
 
     @Query("select * from MetaData")
     Single<List<MetaData>> getMetadata();
-
-
-    @Query("select * from Character")
-    Single<List<Character>> getCharacters();
 
     @Transaction
     @Query("select * from MetaData")
