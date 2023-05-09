@@ -94,7 +94,6 @@ public class ImagesAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder>
 
             Glide.with(ctx)
                     .load(characterApi.getImage())
-                    .centerCrop()
                     .placeholder(placeholderLoading)
                     .error(R.drawable.placeholder_error_image)
                     .diskCacheStrategy(DiskCacheStrategy.ALL)
