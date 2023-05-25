@@ -90,6 +90,8 @@ dependencies {
     //RxJava the same way for java  and kotlin
     implementation "io.reactivex.rxjava3:rxjava:$rx_java_version"
     implementation "io.reactivex.rxjava3:rxandroid:$rx_android_version"
+
+    implementation 'com.github.hall9zeha:DotsLoadingView:2.0.0'
 }
 kapt{
     correctErrorTypes = true

@@ -3,12 +3,13 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     xmlns:app="http://schemas.android.com/apk/res-auto">
-    <com.google.android.material.progressindicator.LinearProgressIndicator
+    <com.barryzeha.dotsloadingview.components.DotsLoadingComponent
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:id="@+id/pbLoading"
-        app:trackColor="?attr/colorAccent"
-        android:indeterminate="true"
+        app:dotColor="?attr/colorAccent"
+        app:numberOfDots="4"
+        app:startAnimation="true"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toTopOf="parent"
